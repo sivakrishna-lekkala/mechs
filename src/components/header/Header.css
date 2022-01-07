@@ -1,0 +1,26 @@
+.header,
+.header li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header {
+  list-style: none;
+}
+.header li {
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+}
+.header li:hover,
+.css-i4bv87-MuiSvgIcon-root:hover {
+  color: #adfc00;
+}
+.css-i4bv87-MuiSvgIcon-root {
+  color: white;
+  margin-left: 30px;
+}
+.active {
+  color: #adfc00 !important;
+}

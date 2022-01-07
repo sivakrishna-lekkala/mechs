@@ -1,0 +1,20 @@
+.gif {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.gif img {
+  margin-top: 100px;
+}
+.gif-text {
+  text-align: left;
+  width: 40%;
+}
+.gif-text p {
+  color: white;
+  margin: 20px 0;
+  font-weight: 700;
+  line-height: 1.5;
+}
