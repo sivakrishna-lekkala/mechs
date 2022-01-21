@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 800px;
   background-color: #feece9;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.185);
   position: absolute;
   top: 50%;
@@ -10,6 +10,10 @@
   transform: translate(-50%, -50%);
   transition: top 0.5s;
   padding: 15px;
+  background-image: url("../../assets/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid white;
 }
 .show-modal {
   top: 50%;

@@ -5,6 +5,7 @@ import "./Mint.css";
 
 import RingLoader from "react-spinners/RingLoader";
 import logo from "../../assets/logo.png";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const Mint = (props) => {
   return (
@@ -53,21 +54,19 @@ const Mint = (props) => {
                 className="ethereum-value"
                 style={{ fontSize: "40px", textTransform: "capitalize" }}
               >
-                0.01 /Total
+                0.01/Total
               </p>
             </div>
             <button onClick={() => {}}>MINT</button>
           </div>
         </section>
       </div>
-      <button
-        className="close-button"
+      <ClearIcon
         onClick={() => {
           props.setShow(false);
         }}
-      >
-        close
-      </button>
+        className="close-icon"
+      />
     </div>
   );
 };

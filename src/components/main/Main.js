@@ -10,7 +10,7 @@ const Main = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div className="main">
-      <Header setShow={setShowModal} />
+      <Header setShow={setShowModal} show={showModal} />
       <img src={logo} alt="logo" className="logo" />
       <Content />
       <Modal show={showModal} setShow={setShowModal}>
