@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
-import { AccountBalanceWallet } from "@mui/icons-material";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
-const Header = ({ setShow }) => {
+const Header = ({ setShow, show }) => {
+  const [active, setActive] = useState(false);
+  const connectWalletHandler = () => {
+    if (window.ethereum) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then(async (result) => {
+          setActive(true);
+        })
+        .catch((e) => {});
+    }
+  };
   return (
     <ul className="header">
       <li
+        className={show ? "active" : ""}
         onClick={() => {
-          setShow(true);
+          active && setShow(true);
         }}
       >
         MINT
       </li>
       <li>
-        <AccountBalanceWallet />
+        <AccountBalanceWalletIcon
+          style={{ color: active ? "#adfc00" : "white" }}
+          onClick={() => {
+            connectWalletHandler();
+          }}
+          className="header-wallet"
+        />
       </li>
     </ul>
   );

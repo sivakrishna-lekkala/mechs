@@ -14,12 +14,11 @@
   font-weight: 700;
 }
 .header li:hover,
-.css-i4bv87-MuiSvgIcon-root:hover {
-  color: #adfc00;
+.header-wallet:hover {
+  color: #adfc00 !important;
 }
-.css-i4bv87-MuiSvgIcon-root {
-  color: white;
-  margin-left: 30px;
+.header-wallet {
+  margin-left: 30px !important;
 }
 .active {
   color: #adfc00 !important;
