@@ -13,6 +13,9 @@ const Header = ({ setShow, show }) => {
         })
         .catch((e) => {});
     }
+    else{
+      /* Add a toast here to install metamask*/
+    }
   };
   return (
     <ul className="header">
