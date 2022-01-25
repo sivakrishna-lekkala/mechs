@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import axios from "axios";
 
 let contract;
 let address;
