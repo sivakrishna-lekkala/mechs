@@ -48,10 +48,10 @@ const Mint = (props) => {
     isFreeSale().then((e) => {
       setFreeSale(e);
     });
-
-    // slotPrice().then((e) => {
-    //   setPrice(e);
-    // });
+    slotPrice().then((e) => {
+      console.log(e)
+      setPrice(e);
+     });
   }, []);
   return (
     <div className="mint" style={{ padding: "40px" }}>
@@ -87,7 +87,7 @@ const Mint = (props) => {
                     className="ethereum-value"
                     style={{ fontSize: "30px", textTransform: "capitalize" }}
                   >
-                    0.01/mint
+                    {price}/mint
                   </p>
                 </div>
                 <div className="addButtons">
@@ -112,7 +112,7 @@ const Mint = (props) => {
                 </div>
                 <button
                   onClick={() => {
-                    _mintRandom(price, "", count);
+                    _mintRandom(price, "0x1d8a50f3ca8a8fe418249b6955adc87880587a1fad8836a896279d9fec1579474d47c5c8e97b9c4adc13c31db7e01d160ec20b1c3e884483f55888a30ecc98c21c", count);
                   }}
                   disabled={!prSale && !maiSale && !freSale}
                   className={!prSale && !maiSale && !freSale && "disable"}

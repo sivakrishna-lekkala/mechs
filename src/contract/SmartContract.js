@@ -121,13 +121,25 @@ export const isFreeSale = async () => {
 };
 
 export const slotPrice = async () => {
+console.log(slotPrice)
   const n = await contract.slotPrice();
-  return n.toNumber();
-};
+  return Number(ethers.utils.formatEther(n))
+}
 
 export const _mintRandom = async (value, signature, quantity) => {
-  const n = await contract._mintRandom();
-};
+    console.log(value, quantity);
+    try{
+        const n = await contract._mintRandom(quantity,signature, {
+            value: ethers.utils.parseEther(`${value * quantity}`).toString(),
+        });
+        const receipt = await n.wait();
+        console.log(receipt);
+    }
+    catch(err) {
+        console.error(err)
+    }
+    }
+  
 
 export const whitelistCheck = async () => {
   try {
