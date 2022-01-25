@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import { providerHandler } from "./../../contract/SmartContract";
 
 const Header = ({ setShow, show }) => {
   const [active, setActive] = useState(false);
@@ -10,10 +11,10 @@ const Header = ({ setShow, show }) => {
         .request({ method: "eth_requestAccounts" })
         .then(async (result) => {
           setActive(true);
+          await providerHandler();
         })
         .catch((e) => {});
-    }
-    else{
+    } else {
       /* Add a toast here to install metamask*/
     }
   };

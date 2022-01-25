@@ -13,9 +13,11 @@ const Main = () => {
       <Header setShow={setShowModal} show={showModal} />
       <img src={logo} alt="logo" className="logo" />
       <Content />
-      <Modal show={showModal} setShow={setShowModal}>
-        <Mint setShow={setShowModal} />
-      </Modal>
+      {showModal && (
+        <Modal show={showModal} setShow={setShowModal}>
+          <Mint setShow={setShowModal} />
+        </Modal>
+      )}
     </div>
   );
 };

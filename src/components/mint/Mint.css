@@ -130,7 +130,11 @@
   font-size: 18px;
   cursor: pointer;
 }
-
+.disable {
+  background-color: rgb(173, 165, 165) !important;
+  box-shadow: rgb(173, 165, 165, 56%) 5px 5px 20px;
+  cursor: not-allowed !important;
+}
 @media (max-width: 425px) {
   .mint-container {
     flex-direction: column;
