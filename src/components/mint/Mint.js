@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Progress } from "react-sweet-progress";
 import "react-sweet-progress/lib/style.css";
 import "./Mint.css";
-
 import RingLoader from "react-spinners/RingLoader";
 import logo from "../../assets/logo.png";
 import ClearIcon from "@mui/icons-material/Clear";
+
+import { percentage } from "./../shared/percentage";
 import {
   slotPrice,
   totalSupply,
@@ -23,6 +24,7 @@ const Mint = (props) => {
   const [freSale, setFreeSale] = useState(false);
   const [loading, setLoading] = useState(true);
   const [price, setPrice] = useState(0.01);
+  const [refresh, setRefresh] = useState(false);
 
   const decreaseCount = () => {
     if (count > 1) {
@@ -49,10 +51,19 @@ const Mint = (props) => {
       setFreeSale(e);
     });
     slotPrice().then((e) => {
-      console.log(e)
       setPrice(e);
-     });
+    });
   }, []);
+
+  useEffect(() => {
+    if (refresh) {
+      totalSupply().then((e) => {
+        setAvailable(e);
+      });
+      setRefresh(false);
+    }
+  }, [refresh]);
+
   return (
     <div className="mint" style={{ padding: "40px" }}>
       {loading ? (
@@ -62,7 +73,7 @@ const Mint = (props) => {
       ) : (
         <>
           <Progress
-            percent={40}
+            percent={100 - Math.floor(percentage(8888, available))}
             strokeWidth={15}
             status="error"
             theme={{
@@ -72,7 +83,7 @@ const Mint = (props) => {
               },
             }}
           />
-          <h2 className="available">{available} of 500 available</h2>
+          <h2 className="available">{available} of 8888 available</h2>
           {prSale && <h2>You are in Pre Sale</h2>}
           {maiSale && <h2>You are in Main Sale</h2>}
           {freSale && <h2>You are in Free Sale</h2>}
@@ -112,7 +123,12 @@ const Mint = (props) => {
                 </div>
                 <button
                   onClick={() => {
-                    _mintRandom(price, "0x1d8a50f3ca8a8fe418249b6955adc87880587a1fad8836a896279d9fec1579474d47c5c8e97b9c4adc13c31db7e01d160ec20b1c3e884483f55888a30ecc98c21c", count);
+                    _mintRandom(
+                      price,
+                      "0x1d8a50f3ca8a8fe418249b6955adc87880587a1fad8836a896279d9fec1579474d47c5c8e97b9c4adc13c31db7e01d160ec20b1c3e884483f55888a30ecc98c21c",
+                      count,
+                      setRefresh
+                    );
                   }}
                   disabled={!prSale && !maiSale && !freSale}
                   className={!prSale && !maiSale && !freSale && "disable"}

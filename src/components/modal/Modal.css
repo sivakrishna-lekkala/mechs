@@ -1,6 +1,7 @@
 .modal {
   width: 100%;
   max-width: 800px;
+  min-height: 500px;
   background-color: #feece9;
   border-radius: 15px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.185);
@@ -14,6 +15,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .show-modal {
   top: 50%;

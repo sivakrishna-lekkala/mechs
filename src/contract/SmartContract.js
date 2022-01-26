@@ -1,5 +1,7 @@
 import { ethers } from "ethers";
 import axios from "axios";
+import toastProperties from "./../components/Toast/toast";
+import { toast } from "react-toastify";
 
 let contract;
 let address;
@@ -121,25 +123,29 @@ export const isFreeSale = async () => {
 };
 
 export const slotPrice = async () => {
-console.log(slotPrice)
   const n = await contract.slotPrice();
-  return Number(ethers.utils.formatEther(n))
-}
+  return Number(ethers.utils.formatEther(n));
+};
 
-export const _mintRandom = async (value, signature, quantity) => {
-    console.log(value, quantity);
-    try{
-        const n = await contract._mintRandom(quantity,signature, {
-            value: ethers.utils.parseEther(`${value * quantity}`).toString(),
-        });
-        const receipt = await n.wait();
-        console.log(receipt);
-    }
-    catch(err) {
-        console.error(err)
-    }
-    }
-  
+export const _mintRandom = async (value, signature, quantity, setRefresh) => {
+  console.log(value, quantity);
+  try {
+    const n = await contract._mintRandom(quantity, signature, {
+      value: ethers.utils.parseEther(`${value * quantity}`).toString(),
+    });
+    toast(<h4>Your Request is processing</h4>, {
+      ...toastProperties,
+      autoClose: 10000,
+    });
+    const receipt = await n.wait();
+    toast.success(`your transaction is completed.`, toastProperties);
+    setRefresh(true);
+    console.log(receipt);
+  } catch (err) {
+    console.error(err);
+    toast.error("transaction failed " + err.message, toastProperties);
+  }
+};
 
 export const whitelistCheck = async () => {
   try {
@@ -154,14 +160,4 @@ export const whitelistCheck = async () => {
   } catch (error) {
     return null;
   }
-};
-
-const toastProperties = {
-  position: "top-right",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
 };
